@@ -1,26 +1,32 @@
-import {
-    NativeBaseProvider,
-    Button,
-    Box,
-    HamburgerIcon,
-    Pressable,
-    Heading,
-    VStack,
-    Text,
-    Center,
+  import { 
+    Box, 
+    Heading, 
+    AspectRatio, 
+    Image, 
+    Text, 
+    Center, 
     HStack,
-    Divider,
-    Icon,
+    Stack, 
+    NativeBaseProvider, 
+    VStack
   } from "native-base";
 
 function DashboardScreen(props) {
     return (
-      <Center>
-        <Text mt="12" fontSize="18">
-          This is {props.id} page.
-        </Text>
-      </Center>
-    );
+ <Box flex={1}>
+     <VStack mx={5} my={5} space={5}>
+         <Text>Welcome Gokul!</Text>
+         <HStack s>
+             <Box bgColor={'amber.100'} h={100} width={200} >
+                 <Text>
+                     Hello
+                 </Text>
+             </Box>
+         </HStack>
+     </VStack>
+     </Box>    
+
+    )
   }
 
   export default DashboardScreen;

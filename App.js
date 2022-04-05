@@ -19,6 +19,7 @@ import {
   HStack,
   Divider,
   Icon,
+  Image,
 } from "native-base";
 import { AppRegistry } from 'react-native';
 import DashboardScreen from './app/Screens/DashboardScreen';
@@ -47,10 +48,6 @@ const getIcon = (screenName) => {
       return "calendar";
     case "Requests":
       return "inbox";
-    case "Trash":
-      return "trash-can";
-    case "Spam":
-      return "alert-circle";
     default:
       return undefined;
   }
@@ -61,14 +58,9 @@ function CustomDrawerContent(props) {
     <DrawerContentScrollView {...props} safeArea>
       <VStack space="6" my="2" mx="1">
         <Box px="4">
-          <Text bold color="gray.700">
-            IgnisITM
-          </Text>
-          <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
-            ...
-          </Text>
+          <Image left={30} size={200} source={require('./app/assets/logo.png')} />
         </Box>
-        <VStack divider={<Divider />} space="4">
+        <VStack divider={<Divider top={300} />} space="4">
           <VStack space="3">
             {props.state.routeNames.map((name, index) => (
               <Pressable
@@ -104,7 +96,7 @@ function CustomDrawerContent(props) {
               </Pressable>
             ))}
           </VStack>
-          <VStack space="5">
+          <VStack top={300} space="5">
             <Text fontWeight="500" fontSize="14" px="5" color="gray.500">
               Help
             </Text>
@@ -114,7 +106,7 @@ function CustomDrawerContent(props) {
                   <Icon
                     color="gray.500"
                     size="5"
-                    as={<MaterialCommunityIcons name="call" />}
+                    as={<MaterialCommunityIcons name="phone" />}
                   />
                   <Text color="gray.700" fontWeight="500">
                     Support
@@ -126,10 +118,10 @@ function CustomDrawerContent(props) {
                   <Icon
                     color="gray.500"
                     size="5"
-                    as={<MaterialCommunityIcons name="chat" />}
+                    as={<MaterialCommunityIcons name="nut" />}
                   />
                   <Text color="gray.700" fontWeight="500">
-                    Chat
+                    Settings
                   </Text>
                 </HStack>
               </Pressable>
@@ -146,7 +138,13 @@ function MyDrawer() {
       <Drawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
-        <Drawer.Screen name="Dashboard" component={DashboardScreen({id:5})} />
+        <Drawer.Screen name="Dashboard" component = {DashboardScreen} 
+      options={{
+        title:"Dashboard",
+        headerRight: () => (
+          <Button variant={'outline'} right={5} onPress={() => alert("This is a button!")}>Gokul Shaji</Button>
+        ),
+      }} />
         <Drawer.Screen name="Work Orders" component={Component} />
         <Drawer.Screen name="Schedule" component={Component} />
         <Drawer.Screen name="Requests" component={Component} />
