@@ -20,6 +20,12 @@ import {
   Divider,
   Icon,
 } from "native-base";
+import { AppRegistry } from 'react-native';
+import DashboardScreen from './app/Screens/DashboardScreen';
+
+
+
+AppRegistry.registerComponent('ignisapp', () => App);
 const Drawer = createDrawerNavigator();
 function Component(props) {
   return (
@@ -33,14 +39,14 @@ function Component(props) {
 
 const getIcon = (screenName) => {
   switch (screenName) {
-    case "Inbox":
-      return "email";
-    case "Outbox":
-      return "send";
-    case "Favorites":
-      return "heart";
-    case "Archive":
-      return "archive";
+    case "Dashboard":
+      return "apps";
+    case "Work Orders":
+      return "tools";
+    case "Schedule":
+      return "calendar";
+    case "Requests":
+      return "inbox";
     case "Trash":
       return "trash-can";
     case "Spam":
@@ -56,10 +62,10 @@ function CustomDrawerContent(props) {
       <VStack space="6" my="2" mx="1">
         <Box px="4">
           <Text bold color="gray.700">
-            Mail
+            IgnisITM
           </Text>
           <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
-            john_doe@gmail.com
+            ...
           </Text>
         </Box>
         <VStack divider={<Divider />} space="4">
@@ -100,7 +106,7 @@ function CustomDrawerContent(props) {
           </VStack>
           <VStack space="5">
             <Text fontWeight="500" fontSize="14" px="5" color="gray.500">
-              Labels
+              Help
             </Text>
             <VStack space="3">
               <Pressable px="5" py="3">
@@ -108,10 +114,10 @@ function CustomDrawerContent(props) {
                   <Icon
                     color="gray.500"
                     size="5"
-                    as={<MaterialCommunityIcons name="bookmark" />}
+                    as={<MaterialCommunityIcons name="call" />}
                   />
                   <Text color="gray.700" fontWeight="500">
-                    Family
+                    Support
                   </Text>
                 </HStack>
               </Pressable>
@@ -120,22 +126,10 @@ function CustomDrawerContent(props) {
                   <Icon
                     color="gray.500"
                     size="5"
-                    as={<MaterialCommunityIcons name="bookmark" />}
+                    as={<MaterialCommunityIcons name="chat" />}
                   />
                   <Text color="gray.700" fontWeight="500">
-                    Friends
-                  </Text>
-                </HStack>
-              </Pressable>
-              <Pressable px="5" py="3">
-                <HStack space="7" alignItems="center">
-                  <Icon
-                    color="gray.500"
-                    size="5"
-                    as={<MaterialCommunityIcons name="bookmark" />}
-                  />
-                  <Text fontWeight="500" color="gray.700">
-                    Work
+                    Chat
                   </Text>
                 </HStack>
               </Pressable>
@@ -152,12 +146,10 @@ function MyDrawer() {
       <Drawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
-        <Drawer.Screen name="Inbox" component={Component} />
-        <Drawer.Screen name="Outbox" component={Component} />
-        <Drawer.Screen name="Favorites" component={Component} />
-        <Drawer.Screen name="Archive" component={Component} />
-        <Drawer.Screen name="Trash" component={Component} />
-        <Drawer.Screen name="Spam" component={Component} />
+        <Drawer.Screen name="Dashboard" component={DashboardScreen({id:5})} />
+        <Drawer.Screen name="Work Orders" component={Component} />
+        <Drawer.Screen name="Schedule" component={Component} />
+        <Drawer.Screen name="Requests" component={Component} />
       </Drawer.Navigator>
     </Box>
   );
