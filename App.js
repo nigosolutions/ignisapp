@@ -57,10 +57,10 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props} safeArea>
       <VStack space="6" my="2" mx="1">
-        <Box px="4">
-          <Image left={30} size={200} source={require('./app/assets/logo.png')} />
+        <Box alignItems={'center'} px="4">
+          <Image size={200} resizeMode='contain'  source={require('./app/assets/logo.png')} />
         </Box>
-        <VStack divider={<Divider top={300} />} space="4">
+        <VStack divider={<Divider top={100} />} space="4">
           <VStack space="3">
             {props.state.routeNames.map((name, index) => (
               <Pressable
@@ -96,7 +96,7 @@ function CustomDrawerContent(props) {
               </Pressable>
             ))}
           </VStack>
-          <VStack top={300} space="5">
+          <VStack top={100} space="5">
             <Text fontWeight="500" fontSize="14" px="5" color="gray.500">
               Help
             </Text>

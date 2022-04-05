@@ -8,8 +8,11 @@
     HStack,
     Stack, 
     NativeBaseProvider, 
-    VStack
+    VStack,
+    Icon
   } from "native-base";
+
+  import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 function DashboardScreen(props) {
     return (
@@ -18,9 +21,12 @@ function DashboardScreen(props) {
          <Text>Welcome Gokul!</Text>
          <HStack s>
              <Box bgColor={'amber.100'} h={100} width={200} >
-                 <Text>
-                     Hello
-                 </Text>
+                 <HStack mx={5} my={7} space={10} alignItems={'center'} >
+                     <Icon 
+                    size="10"
+                    as={<MaterialCommunityIcons name="file" />} />
+                    <Text>Hello</Text>
+                 </HStack>
              </Box>
          </HStack>
      </VStack>
