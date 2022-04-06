@@ -29,8 +29,8 @@ function DashboardScreen(props) {
                     <Text>Hello</Text>
                  </HStack>
              </Box>
-             <Box rounded={15} bgColor={'#fff'} flex={1} >
-                 <HStack mx={5} my={7} space={10} alignItems={'center'} >
+             <Box  alignItems={'center'} justifyContent={'center'} rounded={15} bgColor={'#fff'} flex={1} >
+                 <HStack alignItems={'center'} space={10} >
                      <Icon 
                     size="10"
                     as={<MaterialCommunityIcons name="file" />} />
