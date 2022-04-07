@@ -23,6 +23,7 @@ import {
 } from "native-base";
 import { AppRegistry } from 'react-native';
 import DashboardScreen from './app/Screens/DashboardScreen';
+import WOScreen from './app/Screens/WOScreen';
 
 
 
@@ -145,7 +146,7 @@ function MyDrawer() {
           <Button variant={'outline'} right={5} onPress={() => alert("This is a button!")}>Gokul Shaji</Button>
         ),
       }} />
-        <Drawer.Screen name="Work Orders" component={Component} />
+        <Drawer.Screen name="Work Orders" component={WOScreen} />
         <Drawer.Screen name="Schedule" component={Component} />
         <Drawer.Screen name="Requests" component={Component} />
       </Drawer.Navigator>
