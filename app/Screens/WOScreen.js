@@ -7,7 +7,11 @@ import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 var styles = StyleSheet.create({
     title: { 
-      color: 'white', 
+      color: 'black', 
+      fontWeight: 'bold' 
+    },
+    subtext: { 
+      color: 'grey', 
       fontWeight: 'bold' 
     },
     subtitleView: {
@@ -22,24 +26,29 @@ var styles = StyleSheet.create({
     ratingText: {
       paddingLeft: 10,
       color: 'grey'
+    },
+    listContainer: {
+        backgroundColor: '#e5e5e5',
+        borderRadius: 10
     }
   });
 
 
 function WOScreen(props) {
     const [status, setStatus] = React.useState(0) 
+    const [selectedWo, setselectedWo] = React.useState({})
     const [wo,setWO] = React.useState([])
     React.useEffect(() => {
-        setWO([{name:'hello1',id:5},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2}])
+        setWO([{name:'hello1',id:5, details:'Details of hello1'},{name:'hello2',id:2, details:'Details of hello2'},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2}])
     },[])
     
     //Tab
     const FirstRoute = () => (
         <ScrollView>
-                    <VStack>
+                    <VStack space={3} padding={3}>
                     {
                         wo.map(item => 
-                    <ListItem>
+                    <ListItem containerStyle={styles.listContainer} onPress={()=>{setselectedWo(item)}}>
                          <Badge
                             value={3}
                             textStyle={{ color: 'orange' }}
@@ -88,9 +97,9 @@ function WOScreen(props) {
     //Tab End
 
     return (
-      <Box padding={10} bgColor={'white'} flex={1}>
+      <Box padding={10} bgColor={'#E5E5E5'} flex={1}>
           <HStack flex={1}>
-              <Box bgColor={'amber.100'} flex={1}>
+            <Box bgColor={'white'} flex={1} borderRightWidth={1} borderColor={'#e5e5e5'}>
               <VStack flex={1} >
                <TabView
                 navigationState={{ index, routes }}
@@ -100,12 +109,21 @@ function WOScreen(props) {
                 initialLayout={{ width: layout.width }}
                 />
               </VStack>
-              </Box>
-              <Box bgColor={'white'} flex={2}>
-              <VStack>
-               <Text>Hello</Text>
+            </Box>
+            <Box bgColor={'white'} flex={2}>
+              <VStack flex={1}>
+                  <VStack borderBottomWidth={1} borderColor={'#e5e5e5'}>
+                    <Text style={styles.title}>{selectedWo.name}</Text>
+                    <Text style={styles.subtext}>{selectedWo.id}</Text>
+                  </VStack>
+                  <ScrollView>
+                    <Text>{selectedWo.details}</Text>      
+                  </ScrollView>
+                  <Box>
+                    <Button>Continue</Button>
+                  </Box>
               </VStack>
-              </Box>
+            </Box>
           </HStack>
       </Box>
     );
