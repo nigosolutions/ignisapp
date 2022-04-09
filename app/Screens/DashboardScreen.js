@@ -28,7 +28,7 @@ function DashboardScreen(props) {
                     <HStack mx={5} my={7} space={10} alignItems={'center'} >
                         <Icon 
                         size="10"
-                        as={<MaterialCommunityIcons name="file" />} />
+                        as={<MaterialCommunityIcons name="pending" />} />
                         <Text>Hello</Text>
                     </HStack>
                 </Box>

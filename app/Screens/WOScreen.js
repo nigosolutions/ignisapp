@@ -1,131 +1,114 @@
-import { Center, NativeBaseProvider, Box, VStack, HStack, Icon, Button} from 'native-base';
-import * as React from 'react';
-import { View, useWindowDimensions, Text} from 'react-native';
+import { Badge } from '@rneui/base';
+import { ListItem } from '@rneui/themed';
+import { Box, Button, HStack, Pressable, ScrollView, Text, View, VStack } from 'native-base';
+import React from 'react';
+import { useWindowDimensions, StyleSheet} from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import { MaterialCommunityIcons } from "@expo/vector-icons";
- 
-const FirstRoute = () => (
-//   <View style={{ flex: 1, backgroundColor: 'grey'}}>
-//   	<Text>Tab One</Text>
-//   </View>
-<HStack height={160} justifyContent={'center'} space={3} padding={3}>
-<Box rounded={15} bgColor={'#fff'} flex={1} >
-    <HStack mx={5} my={7} space={10} alignItems={'center'} >
-        <Icon 
-        size="10"
-        as={<MaterialCommunityIcons name="file" />} />
-        <Text>Hello</Text>
-    </HStack>
-</Box>
-<Box  alignItems={'center'} justifyContent={'center'} rounded={15} bgColor={'#fff'} flex={1} >
-    <HStack alignItems={'center'} space={10} >
-        <Icon 
-        size="10"
-        as={<MaterialCommunityIcons name="file" />} />
-        <Text>Hello</Text>
-    </HStack>
-</Box>
-<Box rounded={15} bgColor={'#fff'} flex={1}>
-    <HStack mx={5} my={7} space={10} alignItems={'center'} >
-        <Icon 
-        size="10"
-        as={<MaterialCommunityIcons name="file" />} />
-        <Text>Hello</Text>
-    </HStack>
-</Box>
-<Box alignItems={'center'} justifyContent={'center'} flex={3/4}>
-    <Button width={'3/4'} >Work Orders</Button>
-</Box>
-</HStack>
-);
-const SecondRoute = () => (
-    <HStack height={160} justifyContent={'center'} space={3} padding={3}>
-    <Box rounded={15} bgColor={'#fff'} flex={1} >
-        <HStack mx={5} my={7} space={10} alignItems={'center'} >
-            <Icon 
-            size="10"
-            as={<MaterialCommunityIcons name="file" />} />
-            <Text>Hello</Text>
-        </HStack>
-    </Box>
-    <Box  alignItems={'center'} justifyContent={'center'} rounded={15} bgColor={'#fff'} flex={1} >
-        <HStack alignItems={'center'} space={10} >
-            <Icon 
-            size="10"
-            as={<MaterialCommunityIcons name="file" />} />
-            <Text>Hello</Text>
-        </HStack>
-    </Box>
-    <Box rounded={15} bgColor={'#fff'} flex={1}>
-        <HStack mx={5} my={7} space={10} alignItems={'center'} >
-            <Icon 
-            size="10"
-            as={<MaterialCommunityIcons name="file" />} />
-            <Text>Hello</Text>
-        </HStack>
-    </Box>
-    <Box alignItems={'center'} justifyContent={'center'} flex={3/4}>
-        <Button width={'3/4'} >Work Orders</Button>
-    </Box>
-    </HStack>
-);
-const ThirdRoute = () => (
-    <View style={{ flex: 1, backgroundColor: 'darkgrey'}} >
-        <Text>Tab Three</Text>
-    </View>
-);
-const FourthRoute = () => (
-    <View style={{ flex: 1, backgroundColor: 'darkgrey'}} >
-        <Text>Tab Four</Text>
-    </View>
-);
- 
-export default function TabViewExample() {
-  const layout = useWindowDimensions();
- 
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-  { key: 'first', title: 'Week' },
-  { key: 'second', title: 'Month' },
-  { key: 'third', title: 'Quarter' },
-  { key: 'fourth', title: 'Year' },
-  ]);
- 
-  const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-  third: ThirdRoute,
-  fourth: FourthRoute
+
+var styles = StyleSheet.create({
+    title: { 
+      color: 'white', 
+      fontWeight: 'bold' 
+    },
+    subtitleView: {
+      flexDirection: 'row',
+      paddingLeft: 10,
+      paddingTop: 5
+    },
+    ratingImage: {
+      height: 19.21,
+      width: 100
+    },
+    ratingText: {
+      paddingLeft: 10,
+      color: 'grey'
+    }
   });
+
+
+function WOScreen(props) {
+    const [status, setStatus] = React.useState(0) 
+    const [wo,setWO] = React.useState([])
+    React.useEffect(() => {
+        setWO([{name:'hello1',id:5},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2}])
+    },[])
+    
+    //Tab
+    const FirstRoute = () => (
+        <ScrollView>
+                    <VStack>
+                    {
+                        wo.map(item => 
+                    <ListItem>
+                         <Badge
+                            value={3}
+                            textStyle={{ color: 'orange' }}
+                            containerStyle={{ marginTop: -20 }}
+                        />
+                        <ListItem.Content>
+                            <ListItem.Title style={styles.title}>{item.name}</ListItem.Title>
+                            <ListItem.Subtitle style={styles.subtitleView}>{item.id}</ListItem.Subtitle>
+
+                        </ListItem.Content>
+
+                    </ListItem>
+                        )
+                        }
+                    </VStack>
+                    
+                </ScrollView> 
+    );
+    const SecondRoute = () => (
+    <View style={{ flex: 1, backgroundColor: 'darkgrey'}} >
+        <Text>Tab2</Text>
+    </View>
+    );
+    
+    const layout = useWindowDimensions();
  
-  const renderTabBar = props => (
-  	<TabBar
-     	 {...props}
-      	activeColor={'gray'}
-      	inactiveColor={'black'}
-          style={{marginTop:25,backgroundColor:'#fafbfc'}}
-  	/>
-  );
+    const [index, setIndex] = React.useState(0);
+    const [routes] = React.useState([
+    { key: 'first', title: 'Pending' },
+    { key: 'second', title: 'Completed' }
+    ]);
  
-  return (
-      
-    <Box flex={1}>
-        <VStack mx={5} my={5} space={5} flex={1}>
-            <Text>Hello World!</Text>
-            <VStack rounded={20} padding={3} bgColor={'#fafbfc'} space={0} flex={1}>
-                <Text>Overview</Text>
-                <HStack flex={1}>
-                    <TabView
-            navigationState={{ index, routes }}
-            renderScene={renderScene}
-            renderTabBar={renderTabBar}
-            onIndexChange={setIndex}
-            initialLayout={{ width: layout.width }}
+    const renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute
+    });
+    
+    const renderTabBar = props => (
+        <TabBar
+            {...props}
+            activeColor={'gray'}
+            inactiveColor={'black'}
+            style={{backgroundColor:'#fafbfc'}}
         />
-                </HStack>
-            </VStack>
-        </VStack>
-    </Box>
-      
-  );
+    );
+    //Tab End
+
+    return (
+      <Box padding={10} bgColor={'white'} flex={1}>
+          <HStack flex={1}>
+              <Box bgColor={'amber.100'} flex={1}>
+              <VStack flex={1} >
+               <TabView
+                navigationState={{ index, routes }}
+                renderScene={renderScene}
+                renderTabBar={renderTabBar}
+                onIndexChange={setIndex}
+                initialLayout={{ width: layout.width }}
+                />
+              </VStack>
+              </Box>
+              <Box bgColor={'white'} flex={2}>
+              <VStack>
+               <Text>Hello</Text>
+              </VStack>
+              </Box>
+          </HStack>
+      </Box>
+    );
 }
+
+export default WOScreen;
