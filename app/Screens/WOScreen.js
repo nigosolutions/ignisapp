@@ -1,5 +1,5 @@
-import { Badge } from '@rneui/base';
-import { ListItem } from '@rneui/themed';
+import { SearchBarIOS } from '@rneui/base/dist/SearchBar/SearchBar-ios';
+import { Icon, ListItem, SearchBar } from '@rneui/themed';
 import { Box, Button, HStack, Pressable, ScrollView, Text, View, VStack } from 'native-base';
 import React from 'react';
 import { useWindowDimensions, StyleSheet} from 'react-native';
@@ -16,7 +16,7 @@ var styles = StyleSheet.create({
     },
     subtitleView: {
       flexDirection: 'row',
-      paddingLeft: 10,
+      paddingLeft: 0,
       paddingTop: 5
     },
     ratingImage: {
@@ -39,26 +39,35 @@ function WOScreen(props) {
     const [selectedWo, setselectedWo] = React.useState({})
     const [wo,setWO] = React.useState([])
     React.useEffect(() => {
-        setWO([{name:'hello1',id:5, details:'Details of hello1'},{name:'hello2',id:2, details:'Details of hello2'},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2}])
+        setWO([{name:'Asset tagging',id:1, details:'Details of Asset tagging'},{name:'ITM Annual',id:2, details:'Details of hello2'},{name:'Corrective Maintenance',id:3},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2}])
     },[])
     
     //Tab
     const FirstRoute = () => (
-        <ScrollView>
+  <Box>
+    <SearchBarIOS
+    placeholder='Enter Search Text'/>
+
+    <ScrollView>
                     <VStack space={3} padding={3}>
                     {
                         wo.map(item => 
                     <ListItem containerStyle={styles.listContainer} onPress={()=>{setselectedWo(item)}}>
-                         <Badge
-                            value={3}
-                            textStyle={{ color: 'orange' }}
-                            containerStyle={{ marginTop: -20 }}
+                      <VStack alignItems={'center'}>
+                      <Icon
+                      size={40}
+                        name='pending'
+                        type='material'
+                        color='grey'
                         />
+                        <Text fontSize={10}>Pending</Text>
+                      </VStack>
                         <ListItem.Content>
                             <ListItem.Title style={styles.title}>{item.name}</ListItem.Title>
-                            <ListItem.Subtitle style={styles.subtitleView}>{item.id}</ListItem.Subtitle>
+                            <ListItem.Subtitle style={styles.subtitleView}>{'WO: '}{item.id}</ListItem.Subtitle>
 
                         </ListItem.Content>
+                        <Text>10 Jan</Text>
 
                     </ListItem>
                         )
@@ -66,6 +75,9 @@ function WOScreen(props) {
                     </VStack>
                     
                 </ScrollView> 
+</Box>
+        
+                     
     );
     const SecondRoute = () => (
     <View style={{ flex: 1, backgroundColor: 'darkgrey'}} >
@@ -98,6 +110,7 @@ function WOScreen(props) {
 
     return (
       <Box padding={10} bgColor={'#E5E5E5'} flex={1}>
+          <Box padding={2} rounded={15} bgColor={'white'} flex={1}>
           <HStack flex={1}>
             <Box bgColor={'white'} flex={1} borderRightWidth={1} borderColor={'#e5e5e5'}>
               <VStack flex={1} >
@@ -111,7 +124,7 @@ function WOScreen(props) {
               </VStack>
             </Box>
             <Box bgColor={'white'} flex={2}>
-              <VStack flex={1}>
+              <VStack space={2} padding={2} flex={1}>
                   <VStack borderBottomWidth={1} borderColor={'#e5e5e5'}>
                     <Text style={styles.title}>{selectedWo.name}</Text>
                     <Text style={styles.subtext}>{selectedWo.id}</Text>
@@ -125,6 +138,7 @@ function WOScreen(props) {
               </VStack>
             </Box>
           </HStack>
+          </Box>
       </Box>
     );
 }
