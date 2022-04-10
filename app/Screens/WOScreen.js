@@ -109,7 +109,7 @@ function WOScreen(props) {
     //Tab End
 
     return (
-      <Box padding={10} bgColor={'#E5E5E5'} flex={1}>
+      <Box padding={3} bgColor={'#E5E5E5'} flex={1}>
           <Box padding={2} rounded={15} bgColor={'white'} flex={1}>
           <HStack flex={1}>
             <Box bgColor={'white'} flex={1} borderRightWidth={1} borderColor={'#e5e5e5'}>
