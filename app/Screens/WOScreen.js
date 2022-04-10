@@ -36,7 +36,7 @@ var styles = StyleSheet.create({
 
 function WOScreen(props) {
     const [status, setStatus] = React.useState(0) 
-    const [selectedWo, setselectedWo] = React.useState({})
+    const [selectedWo, setselectedWo] = React.useState(0)
     const [wo,setWO] = React.useState([])
     React.useEffect(() => {
         setWO([{name:'Asset tagging',id:1, details:'Details of Asset tagging'},{name:'ITM Annual',id:2, details:'Details of hello2'},{name:'Corrective Maintenance',id:3},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2}])
@@ -45,8 +45,12 @@ function WOScreen(props) {
     //Tab
     const FirstRoute = () => (
   <Box>
-    <SearchBarIOS
-    placeholder='Enter Search Text'/>
+    <SearchBar
+    placeholder='Enter Search Text'
+    round
+    containerStyle={{backgroundColor:'white'}}
+    inputContainerStyle={{backgroundColor:'#e5e5e5'}}
+    lightTheme/>
 
     <ScrollView>
                     <VStack space={3} padding={3}>
@@ -125,6 +129,7 @@ function WOScreen(props) {
             </Box>
             <Box bgColor={'white'} flex={2}>
               <VStack space={2} padding={2} flex={1}>
+            
                   <VStack borderBottomWidth={1} borderColor={'#e5e5e5'}>
                     <Text style={styles.title}>{selectedWo.name}</Text>
                     <Text style={styles.subtext}>{selectedWo.id}</Text>
@@ -135,7 +140,9 @@ function WOScreen(props) {
                   <Box>
                     <Button>Continue</Button>
                   </Box>
-              </VStack>
+                  </VStack>
+                  
+              
             </Box>
           </HStack>
           </Box>
