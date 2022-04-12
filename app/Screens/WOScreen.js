@@ -1,6 +1,6 @@
 import { SearchBarIOS } from '@rneui/base/dist/SearchBar/SearchBar-ios';
 import { Icon, ListItem, SearchBar } from '@rneui/themed';
-import { Box, Button, HStack, Pressable, ScrollView, Text, View, VStack } from 'native-base';
+import { Box, Button, Heading, HStack, Pressable, ScrollView, Text, View, VStack } from 'native-base';
 import React from 'react';
 import { useWindowDimensions, StyleSheet} from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
@@ -30,6 +30,11 @@ var styles = StyleSheet.create({
     listContainer: {
         backgroundColor: '#e5e5e5',
         borderRadius: 10
+    },
+    DTitle: {
+      color: 'black', 
+      fontWeight: 'bold',
+      // size: 20
     }
   });
 
@@ -39,7 +44,7 @@ function WOScreen(props) {
     const [selectedWo, setselectedWo] = React.useState(0)
     const [wo,setWO] = React.useState([])
     React.useEffect(() => {
-        setWO([{name:'Asset tagging',id:1, details:'Details of Asset tagging'},{name:'ITM Annual',id:2, details:'Details of hello2'},{name:'Corrective Maintenance',id:3},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2}])
+        setWO([{name:'Asset tagging',id:1, details:'Details of Asset tagging', date: '10 Jan', building: {name: 'Building 1', location: 'XYZ street'}},{name:'ITM Annual',id:2, details:'Details of hello2'},{name:'Corrective Maintenance',id:3},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2},{name:'hello2',id:2}])
     },[])
     
     //Tab
@@ -71,7 +76,7 @@ function WOScreen(props) {
                             <ListItem.Subtitle style={styles.subtitleView}>{'WO: '}{item.id}</ListItem.Subtitle>
 
                         </ListItem.Content>
-                        <Text>10 Jan</Text>
+                        <Text>{item.date}</Text>
 
                     </ListItem>
                         )
@@ -129,18 +134,25 @@ function WOScreen(props) {
             </Box>
             <Box bgColor={'white'} flex={2}>
               <VStack space={2} padding={2} flex={1}>
-            
-                  <VStack borderBottomWidth={1} borderColor={'#e5e5e5'}>
+                {selectedWo===0 ? <Text>Not Selected!</Text> :   
+                <>
+                 <VStack borderBottomWidth={1} borderColor={'#e5e5e5'}>
                     <Text style={styles.title}>{selectedWo.name}</Text>
                     <Text style={styles.subtext}>{selectedWo.id}</Text>
                   </VStack>
                   <ScrollView>
-                    <Text>{selectedWo.details}</Text>      
+                    <Text style={styles.title}>Details:</Text>
+                    <Text>{selectedWo.details}</Text>    
+                    <Text>{selectedWo.building.name}</Text>  
                   </ScrollView>
-                  <Box>
-                    <Button>Continue</Button>
+                  <Box alignItems={'center'} borderTopColor={'#e5e5e5'} borderTopWidth={'1'}  padding={3}>
+                    <Button width={'50%'}>Continue</Button>
                   </Box>
+                  </>   }
+
                   </VStack>
+            
+           
                   
               
             </Box>
