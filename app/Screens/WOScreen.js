@@ -88,10 +88,7 @@ function WOScreen(props) {
     ]);
   }, []);
 
-  React.useEffect(() => {
-    ;
-  }, [selectedWo]);
-
+  React.useEffect(() => {}, [selectedWo]);
 
   //Tab
   const FirstRoute = () => (
@@ -108,7 +105,9 @@ function WOScreen(props) {
         <VStack space={3} padding={3}>
           {wo.map((item) => (
             <ListItem
-              containerStyle={item === selectedWo ? (styles.selectedLC): (styles.listContainer)}
+              containerStyle={
+                item === selectedWo ? styles.selectedLC : styles.listContainer
+              }
               onPress={() => {
                 setselectedWo(item);
               }}
@@ -185,10 +184,11 @@ function WOScreen(props) {
           <Box bgColor={"white"} flex={2}>
             <VStack space={2} padding={2} flex={1}>
               {selectedWo === 0 ? (
-                <Box justifyContent={'center'} alignItems={'center'} flex={1}>
-                  <Text color={'#4e5d78'} fontSize={20}>Select a Work Order to View Details</Text>
+                <Box justifyContent={"center"} alignItems={"center"} flex={1}>
+                  <Text color={"#4e5d78"} fontSize={20}>
+                    Select a Work Order to View Details
+                  </Text>
                 </Box>
-                
               ) : (
                 <>
                   <VStack borderBottomWidth={1} borderColor={"#e5e5e5"}>
@@ -206,7 +206,14 @@ function WOScreen(props) {
                     borderTopWidth={"1"}
                     padding={3}
                   >
-                    <Button width={"50%"} onPress={()=>{setselectedWo(0)}}>Continue</Button>
+                    <Button
+                      width={"50%"}
+                      onPress={() => {
+                        setselectedWo(0);
+                      }}
+                    >
+                      Continue
+                    </Button>
                   </Box>
                 </>
               )}

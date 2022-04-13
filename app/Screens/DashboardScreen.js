@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 
 var styles = StyleSheet.create({
   listContainer: {
-    backgroundColor: "#e5e5e5",
+    backgroundColor: "white",
     borderRadius: 10,
   },
 });
@@ -21,9 +21,10 @@ function DashboardScreen(props) {
             <ListItem containerStyle={styles.listContainer} flex={"1"}>
               <Icon
                 reverse
-                name="ios-american-football"
-                type="ionicon"
-                color="#517fa4"
+                name="pending-actions"
+                type="material"
+                color="rgba(255, 182, 72, 0.2)"
+                reverseColor="rgba(255, 182, 72,1)'"
               />
               <VStack space={1}>
                 <ListItem.Title>100</ListItem.Title>
@@ -34,9 +35,10 @@ function DashboardScreen(props) {
             <ListItem containerStyle={styles.listContainer} flex={"1"}>
               <Icon
                 reverse
-                name="ios-american-football"
-                type="ionicon"
-                color="#517fa4"
+                name="pending-actions"
+                type="material"
+                color="rgba(255, 182, 72, 0.2)"
+                reverseColor="rgba(255, 182, 72,1)'"
               />
               <VStack space={1}>
                 <ListItem.Title>100</ListItem.Title>
@@ -47,9 +49,10 @@ function DashboardScreen(props) {
             <ListItem containerStyle={styles.listContainer} flex={"1"}>
               <Icon
                 reverse
-                name="ios-american-football"
-                type="ionicon"
-                color="#517fa4"
+                name="pending-actions"
+                type="material"
+                color="rgba(255, 182, 72, 0.2)"
+                reverseColor="rgba(255, 182, 72,1)'"
               />
               <VStack space={1}>
                 <ListItem.Title>100</ListItem.Title>

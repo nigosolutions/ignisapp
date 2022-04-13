@@ -24,6 +24,7 @@ import {
 import { AppRegistry } from "react-native";
 import DashboardScreen from "./app/Screens/DashboardScreen";
 import WOScreen from "./app/Screens/WOScreen";
+import ScheduleScreen from "./app/Screens/ScheduleScreen";
 
 AppRegistry.registerComponent("ignisapp", () => App);
 const Drawer = createDrawerNavigator();
@@ -158,7 +159,7 @@ function MyDrawer() {
           }}
         />
         <Drawer.Screen name="Work Orders" component={WOScreen} />
-        <Drawer.Screen name="Schedule" component={Component} />
+        <Drawer.Screen name="Schedule" component={ScheduleScreen} />
         <Drawer.Screen name="Requests" component={Component} />
       </Drawer.Navigator>
     </Box>
