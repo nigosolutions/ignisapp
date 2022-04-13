@@ -40,6 +40,10 @@ var styles = StyleSheet.create({
     backgroundColor: "#e5e5e5",
     borderRadius: 10,
   },
+  selectedLC: {
+    backgroundColor: "#ebf2ff",
+    borderRadius: 10,
+  },
   DTitle: {
     color: "black",
     fontWeight: "bold",
@@ -62,17 +66,24 @@ function WOScreen(props) {
       },
       {
         name: "Asset tagging",
-        id: 1,
+        id: 2,
         details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: { name: "Building 1", location: "XYZ street" },
+        date: "11 Jan",
+        building: { name: "Building 2", location: "ABC street" },
       },
       {
         name: "Asset tagging",
-        id: 1,
+        id: 3,
         details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: { name: "Building 1", location: "XYZ street" },
+        date: "12 Jan",
+        building: { name: "Building 3", location: "123 street" },
+      },
+      {
+        name: "Asset tagging",
+        id: 3,
+        details: "Details of Asset tagging",
+        date: "12 Jan",
+        building: { name: "Building 3", location: "123 street" },
       },
     ]);
   }, []);
@@ -97,7 +108,7 @@ function WOScreen(props) {
         <VStack space={3} padding={3}>
           {wo.map((item) => (
             <ListItem
-              containerStyle={styles.listContainer}
+              containerStyle={item === selectedWo ? (styles.selectedLC): (styles.listContainer)}
               onPress={() => {
                 setselectedWo(item);
               }}
@@ -174,7 +185,10 @@ function WOScreen(props) {
           <Box bgColor={"white"} flex={2}>
             <VStack space={2} padding={2} flex={1}>
               {selectedWo === 0 ? (
-                <Text flex={1} alignitems={'center'} justifyContent={'cenetr'}>Not Selected!</Text>
+                <Box justifyContent={'center'} alignItems={'center'} flex={1}>
+                  <Text color={'#4e5d78'} fontSize={20}>Select a Work Order to View Details</Text>
+                </Box>
+                
               ) : (
                 <>
                   <VStack borderBottomWidth={1} borderColor={"#e5e5e5"}>
@@ -192,7 +206,7 @@ function WOScreen(props) {
                     borderTopWidth={"1"}
                     padding={3}
                   >
-                    <Button width={"50%"}>Continue</Button>
+                    <Button width={"50%"} onPress={()=>{setselectedWo(0)}}>Continue</Button>
                   </Box>
                 </>
               )}
