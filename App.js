@@ -1,4 +1,4 @@
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -21,13 +21,11 @@ import {
   Icon,
   Image,
 } from "native-base";
-import { AppRegistry } from 'react-native';
-import DashboardScreen from './app/Screens/DashboardScreen';
-import WOScreen from './app/Screens/WOScreen';
+import { AppRegistry } from "react-native";
+import DashboardScreen from "./app/Screens/DashboardScreen";
+import WOScreen from "./app/Screens/WOScreen";
 
-
-
-AppRegistry.registerComponent('ignisapp', () => App);
+AppRegistry.registerComponent("ignisapp", () => App);
 const Drawer = createDrawerNavigator();
 function Component(props) {
   return (
@@ -58,8 +56,12 @@ function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props} safeArea>
       <VStack space="6" my="2" mx="1">
-        <Box alignItems={'center'} px="4">
-          <Image size={200} resizeMode='contain'  source={require('./app/assets/logo.png')} />
+        <Box alignItems={"center"} px="4">
+          <Image
+            size={200}
+            resizeMode="contain"
+            source={require("./app/assets/logo.png")}
+          />
         </Box>
         <VStack divider={<Divider top={100} />} space="4">
           <VStack space="3">
@@ -139,13 +141,22 @@ function MyDrawer() {
       <Drawer.Navigator
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
-        <Drawer.Screen name="Dashboard" component = {DashboardScreen} 
-      options={{
-        title:"Dashboard",
-        headerRight: () => (
-          <Button variant={'outline'} right={5} onPress={() => alert("This is a button!")}>Gokul Shaji</Button>
-        ),
-      }} />
+        <Drawer.Screen
+          name="Dashboard"
+          component={DashboardScreen}
+          options={{
+            title: "Dashboard",
+            headerRight: () => (
+              <Button
+                variant={"outline"}
+                right={5}
+                onPress={() => alert("This is a button!")}
+              >
+                Gokul Shaji
+              </Button>
+            ),
+          }}
+        />
         <Drawer.Screen name="Work Orders" component={WOScreen} />
         <Drawer.Screen name="Schedule" component={Component} />
         <Drawer.Screen name="Requests" component={Component} />
