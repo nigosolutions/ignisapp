@@ -13,20 +13,29 @@ import {
 import React from "react";
 import { useWindowDimensions, StyleSheet } from "react-native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
+import MapView from "react-native-maps";
+import { Marker } from "react-native-svg";
 
 var styles = StyleSheet.create({
   title: {
-    color: "black",
+    color: "#4e5d78",
     fontWeight: "bold",
   },
+  desc_title: {
+    color: "#4e5d78",
+    fontWeight: "bold",
+    fontSize: 20
+  },
   subtext: {
-    color: "grey",
+    color: "#8a94a6",
     fontWeight: "bold",
   },
   subtitleView: {
     flexDirection: "row",
     paddingLeft: 0,
     paddingTop: 5,
+    color: "#8a94a6",
+    fontWeight: "bold",
   },
   ratingImage: {
     height: 19.21,
@@ -59,31 +68,31 @@ function WOScreen(props) {
     setWO([
       {
         name: "Asset tagging",
-        id: 1,
+        id: 'AT3224',
         details: "Details of Asset tagging",
         date: "10 Jan",
-        building: { name: "Building 1", location: "XYZ street" },
+        building: { name: "Building 1", location: {address:"XYZ street", coords:[25.2854,51.5310]}},
       },
       {
         name: "Asset tagging",
         id: 2,
         details: "Details of Asset tagging",
         date: "11 Jan",
-        building: { name: "Building 2", location: "ABC street" },
+        building: { name: "Building 2", location: {address:"XYZ street", coords:[25,55]}},
       },
       {
         name: "Asset tagging",
         id: 3,
         details: "Details of Asset tagging",
         date: "12 Jan",
-        building: { name: "Building 3", location: "123 street" },
+        building: { name: "Building 3", location: {address:"XYZ street", coords:[24.9909,51.5493]}},
       },
       {
         name: "Asset tagging",
         id: 3,
         details: "Details of Asset tagging",
         date: "12 Jan",
-        building: { name: "Building 3", location: "123 street" },
+        building: { name: "Building 3", location: {address:"XYZ street", coords:[25.1659,51.5976]}},
       },
     ]);
   }, []);
@@ -154,9 +163,11 @@ function WOScreen(props) {
   const renderTabBar = (props) => (
     <TabBar
       {...props}
-      activeColor={"gray"}
-      inactiveColor={"black"}
-      style={{ backgroundColor: "#fafbfc" }}
+      activeColor={"#4e5d78"}
+      indicatorStyle={{ backgroundColor: '#FF7D00' }}
+      inactiveColor={"#8a94a6"}
+      style={{ backgroundColor: "white"}}
+      labelStyle={{fontWeight:'bold'}}
     />
   );
   //Tab End
@@ -192,13 +203,37 @@ function WOScreen(props) {
               ) : (
                 <>
                   <VStack borderBottomWidth={1} borderColor={"#e5e5e5"}>
-                    <Text style={styles.title}>{selectedWo.name}</Text>
-                    <Text style={styles.subtext}>{selectedWo.id}</Text>
+                    <Text style={styles.desc_title}>{selectedWo.name}</Text>
+                    <Text style={styles.subtext}>WO#: {selectedWo.id}</Text>
                   </VStack>
                   <ScrollView>
-                    <Text style={styles.title}>Details:</Text>
+                    <Text style={styles.desc_title}>Details:</Text>
+                    <Text></Text>
                     <Text>{selectedWo.details}</Text>
                     <Text>{selectedWo.building.name}</Text>
+                    <Text></Text>
+                    <Text style={styles.desc_title}>Location:</Text>
+                    <Text></Text>
+                    <Text>{selectedWo.building.location.address}</Text>
+                    <Text></Text>
+                    <Box flex={1} alignItems={'center'}>
+                      <MapView
+                        width={'75%'}
+                        height={300}
+                        region={{
+                          latitude: selectedWo.building.location.coords[0],
+                          longitude: selectedWo.building.location.coords[1],
+                          latitudeDelta: 0.0922,
+                          longitudeDelta: 0.0421,
+                        }}
+                      >
+                        <Marker
+                          coordinate={{ latitude : 25.2854 , longitude : 51.5310 }}
+                          title={'test'}
+                        />
+                      </MapView>
+                    </Box>
+
                   </ScrollView>
                   <Box
                     alignItems={"center"}

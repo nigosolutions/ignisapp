@@ -1,10 +1,16 @@
 import MapView from "react-native-maps";
-import { Box, Text } from "native-base";
+import { Box, Button, Text } from "native-base";
 import React from "react";
+
+
+
 
 function ScheduleScreen(props) {
   return (
     <Box flex={1}>
+      <Box flex={1} justifyContent={'center'} alignItems={'center'}>
+        <Button>Refersh</Button>
+      </Box>
       <MapView
         flex={1}
         initialRegion={{
