@@ -1,7 +1,20 @@
-import { Box, Text, Center, HStack, VStack, Button } from "native-base";
+import { Box, Text, Center, HStack, VStack } from "native-base";
 
-import { Icon, ListItem } from "@rneui/themed";
+import { Button, Icon, ListItem } from "@rneui/themed";
 import { StyleSheet } from "react-native";
+import WeekView from "react-native-week-view";
+
+const myEvents = [
+  {
+    id: 1,
+    description: 'Event',
+    startDate: new Date(2021, 3, 15, 12, 0),
+    endDate: new Date(2021, 3, 15, 12, 30),
+    color: 'blue',
+    // ... more properties if needed,
+  },
+  // More events...
+];
 
 var styles = StyleSheet.create({
   listContainer: {
@@ -13,7 +26,7 @@ var styles = StyleSheet.create({
 function DashboardScreen(props) {
   return (
     <Box flex={1}>
-      <VStack mx={5} my={5} space={5}>
+      <VStack flex={1} mx={5} my={5} space={5}>
         <Text>Welcome Gokul!</Text>
         <VStack rounded={20} padding={3} bgColor={"#fafbfc"} space={5}>
           <Text>Overview</Text>
@@ -28,43 +41,62 @@ function DashboardScreen(props) {
               />
               <VStack space={1}>
                 <ListItem.Title>100</ListItem.Title>
-                <ListItem.Subtitle>Pending</ListItem.Subtitle>
+                <ListItem.Subtitle style={{ color: "grey" }}>
+                  Pending
+                </ListItem.Subtitle>
               </VStack>
             </ListItem>
 
             <ListItem containerStyle={styles.listContainer} flex={"1"}>
               <Icon
                 reverse
-                name="pending-actions"
-                type="material"
-                color="rgba(255, 182, 72, 0.2)"
-                reverseColor="rgba(255, 182, 72,1)'"
+                name="progress-clock"
+                type="material-community"
+                color="rgba(47, 73, 209, 0.2)"
+                reverseColor="rgba(47, 73, 209,1)'"
               />
               <VStack space={1}>
                 <ListItem.Title>100</ListItem.Title>
-                <ListItem.Subtitle>In Progress</ListItem.Subtitle>
+                <ListItem.Subtitle style={{ color: "grey" }}>
+                  In Progress
+                </ListItem.Subtitle>
               </VStack>
             </ListItem>
 
             <ListItem containerStyle={styles.listContainer} flex={"1"}>
               <Icon
                 reverse
-                name="pending-actions"
+                name="done-all"
                 type="material"
-                color="rgba(255, 182, 72, 0.2)"
-                reverseColor="rgba(255, 182, 72,1)'"
+                color="rgba(75, 222, 151, 0.2)"
+                reverseColor="rgba(75, 222, 151, 1)'"
               />
               <VStack space={1}>
                 <ListItem.Title>100</ListItem.Title>
-                <ListItem.Subtitle>Completed</ListItem.Subtitle>
+                <ListItem.Subtitle style={{ color: "grey" }}>
+                  Completed
+                </ListItem.Subtitle>
               </VStack>
             </ListItem>
 
             <Box alignItems={"center"} justifyContent={"center"} flex={3 / 4}>
-              <Button width={"3/4"}>Work Orders</Button>
+              <Button
+                title="Work Orders"
+                buttonStyle={{
+                  borderRadius: 30,
+                }}
+              />
             </Box>
           </HStack>
         </VStack>
+    <Box bgColor={'white'} flex={1}>
+            <WeekView
+            flex={1}
+              events={myEvents}
+              selectedDate={new Date(2021, 3, 15)}
+              numberOfDays={7}/>
+              </Box>
+
       </VStack>
     </Box>
   );
