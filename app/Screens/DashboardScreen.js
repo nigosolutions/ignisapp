@@ -6,12 +6,11 @@ import Calendar from "react-native-big-calendar";
 
 const events = [
   {
-    title: 'Asset Tagging',
+    title: "Asset Tagging",
     start: "2022-04-15T08:05:49.292Z",
     end: "2022-04-15T14:08:49.292Z",
   },
-
-]
+];
 
 var styles = StyleSheet.create({
   listContainer: {
@@ -87,7 +86,7 @@ function DashboardScreen(props) {
           </HStack>
         </VStack>
         <Box padding={3} rounded={10} bgColor={"white"} flex={1}>
-        <Calendar events={events} height={600} />
+          <Calendar events={events} height={600} />
         </Box>
       </VStack>
     </Box>
