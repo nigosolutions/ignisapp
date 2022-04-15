@@ -10,9 +10,7 @@ import {
   NativeBaseProvider,
   Button,
   Box,
-  HamburgerIcon,
   Pressable,
-  Heading,
   VStack,
   Text,
   Center,
@@ -25,6 +23,7 @@ import { AppRegistry } from "react-native";
 import DashboardScreen from "./app/Screens/DashboardScreen";
 import WOScreen from "./app/Screens/WOScreen";
 import ScheduleScreen from "./app/Screens/ScheduleScreen";
+import { Avatar } from "@rneui/themed";
 
 AppRegistry.registerComponent("ignisapp", () => App);
 const Drawer = createDrawerNavigator();
@@ -149,13 +148,13 @@ function MyDrawer() {
           options={{
             title: "Dashboard",
             headerRight: () => (
-              <Button
-                variant={"outline"}
-                right={5}
-                onPress={() => alert("This is a button!")}
-              >
-                Gokul Shaji
-              </Button>
+              <Pressable padding={5}>
+                <Avatar
+                  rounded
+                  title="GS"
+                  containerStyle={{ backgroundColor: "#3d4db7" }}
+                />
+              </Pressable>
             ),
           }}
         />
