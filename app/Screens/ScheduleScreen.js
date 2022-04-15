@@ -1,26 +1,20 @@
-import MapView from "react-native-maps";
-import { Box, Button, Text } from "native-base";
-import React from "react";
+import { Box } from 'native-base';
+import React from 'react';
+import Calendar from 'react-native-big-calendar';
 
-
-
+const events = [
+  {
+    title: 'Asset Tagging',
+    start: "2022-04-15T08:05:49.292Z",
+    end: "2022-04-15T14:08:49.292Z",
+  },
+];
 
 function ScheduleScreen(props) {
   return (
-    <Box flex={1}>
-      <Box flex={1} justifyContent={'center'} alignItems={'center'}>
-        <Button>Refersh</Button>
-      </Box>
-      <MapView
-        flex={1}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
-    </Box>
+<Box padding={5} flex={1} bgColor={'white'}>
+  <Calendar events={events} height={100} mode='month'/>
+</Box>
   );
 }
 

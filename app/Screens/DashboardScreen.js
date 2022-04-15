@@ -1,20 +1,17 @@
-import { Box, Text, Center, HStack, VStack } from "native-base";
+import { Box, Text, HStack, VStack } from "native-base";
 
 import { Button, Icon, ListItem } from "@rneui/themed";
 import { StyleSheet } from "react-native";
-import WeekView from "react-native-week-view";
+import Calendar from "react-native-big-calendar";
 
-const myEvents = [
+const events = [
   {
-    id: 1,
-    description: "Event",
-    startDate: new Date(2021, 3, 15, 12, 0),
-    endDate: new Date(2021, 3, 15, 12, 30),
-    color: "blue",
-    // ... more properties if needed,
+    title: 'Asset Tagging',
+    start: "2022-04-15T08:05:49.292Z",
+    end: "2022-04-15T14:08:49.292Z",
   },
-  // More events...
-];
+
+]
 
 var styles = StyleSheet.create({
   listContainer: {
@@ -89,19 +86,8 @@ function DashboardScreen(props) {
             </Box>
           </HStack>
         </VStack>
-        <Box rounded={5} bgColor={"white"} flex={1}>
-          <WeekView
-            headerStyle={{
-              backgroundColor: "lightgrey",
-            
-              color: "#fff",
-              borderColor: "#fff",
-              borderRadius:1
-            }}
-            events={myEvents}
-            selectedDate={new Date(2021, 3, 15)}
-            numberOfDays={7}
-          />
+        <Box padding={3} rounded={10} bgColor={"white"} flex={1}>
+        <Calendar events={events} height={600} />
         </Box>
       </VStack>
     </Box>
