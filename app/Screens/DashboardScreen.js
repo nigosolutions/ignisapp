@@ -7,10 +7,10 @@ import WeekView from "react-native-week-view";
 const myEvents = [
   {
     id: 1,
-    description: 'Event',
+    description: "Event",
     startDate: new Date(2021, 3, 15, 12, 0),
     endDate: new Date(2021, 3, 15, 12, 30),
-    color: 'blue',
+    color: "blue",
     // ... more properties if needed,
   },
   // More events...
@@ -89,14 +89,20 @@ function DashboardScreen(props) {
             </Box>
           </HStack>
         </VStack>
-    <Box bgColor={'white'} flex={1}>
-            <WeekView
-            flex={1}
-              events={myEvents}
-              selectedDate={new Date(2021, 3, 15)}
-              numberOfDays={7}/>
-              </Box>
-
+        <Box rounded={5} bgColor={"white"} flex={1}>
+          <WeekView
+            headerStyle={{
+              backgroundColor: "lightgrey",
+            
+              color: "#fff",
+              borderColor: "#fff",
+              borderRadius:1
+            }}
+            events={myEvents}
+            selectedDate={new Date(2021, 3, 15)}
+            numberOfDays={7}
+          />
+        </Box>
       </VStack>
     </Box>
   );

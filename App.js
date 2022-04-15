@@ -59,6 +59,7 @@ function CustomDrawerContent(props) {
       <VStack space="6" my="2" mx="1">
         <Box alignItems={"center"} px="4">
           <Image
+          alt="Logo"
             size={200}
             resizeMode="contain"
             source={require("./app/assets/logo.png")}
