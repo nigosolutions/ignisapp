@@ -10,10 +10,12 @@ const events = [
   },
 ];
 
+
+
 function ScheduleScreen(props) {
   return (
     <Box padding={5} flex={1} bgColor={"white"}>
-      <Calendar events={events} height={100} mode="month" />
+      <Calendar  events={events} height={100} mode="month" />
     </Box>
   );
 }
