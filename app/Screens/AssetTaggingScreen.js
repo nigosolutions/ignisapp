@@ -1,11 +1,13 @@
 import { FAB, ListItem } from "@rneui/themed";
-import { Box, HStack, ScrollView, Text, VStack, Button } from "native-base";
+import { Box, HStack, ScrollView, Text, VStack, Button, Modal, Popover} from "native-base";
 import React from "react";
 import { StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 function AssetTaggingScreen(props) {
   const [visible, setVisible] = React.useState(true);
   const [dev, setDev] = React.useState([]);
+  const [showModal, setShowModal] = React.useState(false);
   React.useEffect(() => {
     setDev([
       {
@@ -197,6 +199,7 @@ function AssetTaggingScreen(props) {
       },
     ]);
   }, []);
+
   return (
     <Box flex={1} padding={5}>
       <VStack space={5} flex={1}>
@@ -222,13 +225,14 @@ function AssetTaggingScreen(props) {
                   justifyContent={"space-between"}
                 >
                   {dev.map((item) => (
+                    // <TouchableOpacity onLongPress={() => setShowModal(true)}>
                     <ListItem
-                      backgroundColor={"#e5e5e5"}
+                      // backgroundColor={"#e5e5e5"}
                       margin={5}
                       width={250}
                       containerStyle={styles.listContainer}
                     >
-                      <VStack space={1}>
+                      <VStack space={1} flex={1}>
                         <ListItem.Title style={styles.title}>
                           {item.name}
                         </ListItem.Title>
@@ -236,9 +240,57 @@ function AssetTaggingScreen(props) {
                           {item.name}
                         </ListItem.Subtitle>
                       </VStack>
+                      <Box flex={1} alignItems='center'>
+                        <Popover trigger={triggerProps => {
+                            return <Button {...triggerProps} colorScheme="info">
+                                    Edit/Delete
+                                  </Button>;
+                        }}>
+                            <Popover.Content accessibilityLabel="Delete Customerd" w="56">
+                            <Popover.Arrow />
+                            <Popover.CloseButton />
+                            <Popover.Header>Edit/Delete</Popover.Header>
+                            <Popover.Body>
+                              Do you want to edit or delete {item.name + '?'}
+                              This action cannot be
+                              reversed. Deleted data can not be recovered.
+                            </Popover.Body>
+                            <Popover.Footer justifyContent="flex-end">
+                              <Button.Group space={2}>
+                                <Button colorScheme="coolGray" variant="ghost">
+                                  Cancel
+                                </Button>
+                                <Button colorScheme="info">Edit</Button>
+                                <Button colorScheme="danger">Delete</Button>
+                              </Button.Group>
+                            </Popover.Footer>
+                          </Popover.Content>
+                        </Popover>
+                      </Box>
                     </ListItem>
+                    // </TouchableOpacity>
                   ))}
                 </Box>
+                {/* <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                  <Modal.Content maxWidth="300px">
+                    <Modal.CloseButton />
+                    <Modal.Header>Edit or delete device</Modal.Header>
+                    <Modal.Footer>
+                      <Button.Group space={2} flex={1} justifyContent={'center'}>
+                        <Button variant="ghost" colorScheme="blueGray" onPress={() => {
+                        setShowModal(false);
+                      }}>
+                          Edit
+                        </Button>
+                        <Button style={{backgroundColor:'red'}} onPress={() => {
+                        setShowModal(false);
+                      }}>
+                          Delete
+                        </Button>
+                      </Button.Group>
+                    </Modal.Footer>
+                  </Modal.Content>
+                </Modal> */}
               </ScrollView>
             </Box>
           </VStack>
