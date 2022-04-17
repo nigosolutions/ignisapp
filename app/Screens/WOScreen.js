@@ -1,4 +1,4 @@
-import { Icon, ListItem, SearchBar } from "@rneui/themed";
+import { FAB, Icon, ListItem, SearchBar } from "@rneui/themed";
 import {
   Box,
   Button,
@@ -293,14 +293,9 @@ function WOScreen(props) {
                     borderTopWidth={"1"}
                     padding={3}
                   >
-                    <Button
-                      width={"50%"}
-                      onPress={() => {
+                     <FAB title="Continue" color="#377DFF"  onPress={() => {
                         setselectedWo(0);
-                      }}
-                    >
-                      Continue
-                    </Button>
+                      }} />
                   </Box>
                 </>
               )}

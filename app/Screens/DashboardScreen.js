@@ -1,5 +1,5 @@
 import { Box, Text, HStack, VStack } from "native-base";
-import { Button, Icon, ListItem } from "@rneui/themed";
+import { Button, FAB, Icon, ListItem } from "@rneui/themed";
 import { StyleSheet } from "react-native";
 import Calendar from "react-native-big-calendar";
 
@@ -74,14 +74,7 @@ function DashboardScreen(props) {
               </VStack>
             </ListItem>
 
-            <Box alignItems={"center"} justifyContent={"center"} flex={3 / 4}>
-              <Button
-                title="Work Orders"
-                buttonStyle={{
-                  borderRadius: 30,
-                }}
-              />
-            </Box>
+            <FAB size="small" title="Work Orders" color="#377DFF"/>
           </HStack>
         </VStack>
         <Box padding={3} rounded={10} bgColor={"white"} flex={1}>
