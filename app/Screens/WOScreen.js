@@ -25,7 +25,7 @@ var styles = StyleSheet.create({
   desc_title: {
     color: "#4e5d78",
     fontWeight: "bold",
-    fontSize: 20
+    fontSize: 20,
   },
   subtext: {
     color: "#8a94a6",
@@ -69,43 +69,58 @@ function WOScreen(props) {
     setWO([
       {
         name: "Asset tagging",
-        id: 'AT3224',
+        id: "AT3224",
         details: "Details of Asset tagging",
         date: "10 Jan",
-        building: { name: "Building 1", location: {address:"XYZ street", coords:[25.2854,51.5310]}},
-        status: 'pending'
+        building: {
+          name: "Building 1",
+          location: { address: "XYZ street", coords: [25.2854, 51.531] },
+        },
+        status: "pending",
       },
       {
         name: "Asset tagging",
         id: 2,
         details: "Details of Asset tagging",
         date: "11 Jan",
-        building: { name: "Building 2", location: {address:"XYZ street", coords:[25,55]}},
-        status: 'pending'
+        building: {
+          name: "Building 2",
+          location: { address: "XYZ street", coords: [25, 55] },
+        },
+        status: "pending",
       },
       {
         name: "Asset tagging",
         id: 3,
         details: "Details of Asset tagging",
         date: "12 Jan",
-        building: { name: "Building 3", location: {address:"XYZ street", coords:[24.9909,51.5493]}},
-        status: 'pending'
+        building: {
+          name: "Building 3",
+          location: { address: "XYZ street", coords: [24.9909, 51.5493] },
+        },
+        status: "pending",
       },
       {
         name: "Asset tagging",
         id: 3,
         details: "Details of Asset tagging",
         date: "12 Jan",
-        building: { name: "Building 3", location: {address:"XYZ street", coords:[25.1659,51.5976]}},
-        status: 'pending'
+        building: {
+          name: "Building 3",
+          location: { address: "XYZ street", coords: [25.1659, 51.5976] },
+        },
+        status: "pending",
       },
       {
         name: "Asset tagging",
         id: 3,
         details: "Details of Asset tagging",
         date: "12 Jan",
-        building: { name: "Building 3", location: {address:"XYZ street", coords:[25.1659,51.5976]}},
-        status: 'completed'
+        building: {
+          name: "Building 3",
+          location: { address: "XYZ street", coords: [25.1659, 51.5976] },
+        },
+        status: "completed",
       },
     ]);
   }, []);
@@ -125,31 +140,33 @@ function WOScreen(props) {
 
       <ScrollView>
         <VStack space={3} padding={3}>
-          {wo.map((item) => item.status != 'completed' ? (
-            <ListItem
-              containerStyle={
-                item === selectedWo ? styles.selectedLC : styles.listContainer
-              }
-              onPress={() => {
-                setselectedWo(item);
-              }}
-            >
-              <VStack alignItems={"center"}>
-                <Icon size={40} name="pending" type="material" color="grey" />
-                <Text fontSize={10}>Pending</Text>
-              </VStack>
-              <ListItem.Content>
-                <ListItem.Title style={styles.title}>
-                  {item.name}
-                </ListItem.Title>
-                <ListItem.Subtitle style={styles.subtitleView}>
-                  {"WO: "}
-                  {item.id}
-                </ListItem.Subtitle>
-              </ListItem.Content>
-              <Text>{item.date}</Text>
-            </ListItem>
-          ):null)}
+          {wo.map((item) =>
+            item.status != "completed" ? (
+              <ListItem
+                containerStyle={
+                  item === selectedWo ? styles.selectedLC : styles.listContainer
+                }
+                onPress={() => {
+                  setselectedWo(item);
+                }}
+              >
+                <VStack alignItems={"center"}>
+                  <Icon size={40} name="pending" type="material" color="grey" />
+                  <Text fontSize={10}>Pending</Text>
+                </VStack>
+                <ListItem.Content>
+                  <ListItem.Title style={styles.title}>
+                    {item.name}
+                  </ListItem.Title>
+                  <ListItem.Subtitle style={styles.subtitleView}>
+                    {"WO: "}
+                    {item.id}
+                  </ListItem.Subtitle>
+                </ListItem.Content>
+                <Text>{item.date}</Text>
+              </ListItem>
+            ) : null
+          )}
         </VStack>
       </ScrollView>
     </Box>
@@ -167,31 +184,33 @@ function WOScreen(props) {
 
       <ScrollView>
         <VStack space={3} padding={3}>
-          {wo.map((item) => item.status == 'completed' ? (
-            <ListItem
-              containerStyle={
-                item === selectedWo ? styles.selectedLC : styles.listContainer
-              }
-              onPress={() => {
-                setselectedWo(item);
-              }}
-            >
-              <VStack alignItems={"center"}>
-                <Icon size={40} name="pending" type="material" color="grey" />
-                <Text fontSize={10}>Completed</Text>
-              </VStack>
-              <ListItem.Content>
-                <ListItem.Title style={styles.title}>
-                  {item.name}
-                </ListItem.Title>
-                <ListItem.Subtitle style={styles.subtitleView}>
-                  {"WO: "}
-                  {item.id}
-                </ListItem.Subtitle>
-              </ListItem.Content>
-              <Text>{item.date}</Text>
-            </ListItem>
-          ):null)}
+          {wo.map((item) =>
+            item.status == "completed" ? (
+              <ListItem
+                containerStyle={
+                  item === selectedWo ? styles.selectedLC : styles.listContainer
+                }
+                onPress={() => {
+                  setselectedWo(item);
+                }}
+              >
+                <VStack alignItems={"center"}>
+                  <Icon size={40} name="pending" type="material" color="grey" />
+                  <Text fontSize={10}>Completed</Text>
+                </VStack>
+                <ListItem.Content>
+                  <ListItem.Title style={styles.title}>
+                    {item.name}
+                  </ListItem.Title>
+                  <ListItem.Subtitle style={styles.subtitleView}>
+                    {"WO: "}
+                    {item.id}
+                  </ListItem.Subtitle>
+                </ListItem.Content>
+                <Text>{item.date}</Text>
+              </ListItem>
+            ) : null
+          )}
         </VStack>
       </ScrollView>
     </Box>
@@ -214,10 +233,10 @@ function WOScreen(props) {
     <TabBar
       {...props}
       activeColor={"#4e5d78"}
-      indicatorStyle={{ backgroundColor: '#FF7D00' }}
+      indicatorStyle={{ backgroundColor: "#FF7D00" }}
       inactiveColor={"#8a94a6"}
-      style={{ backgroundColor: "white"}}
-      labelStyle={{fontWeight:'bold'}}
+      style={{ backgroundColor: "white" }}
+      labelStyle={{ fontWeight: "bold" }}
     />
   );
   //Tab End
@@ -266,9 +285,9 @@ function WOScreen(props) {
                     <Text></Text>
                     <Text>{selectedWo.building.location.address}</Text>
                     <Text></Text>
-                    <Box flex={1} alignItems={'center'}>
+                    <Box flex={1} alignItems={"center"}>
                       <MapView
-                        width={'75%'}
+                        width={"75%"}
                         height={300}
                         region={{
                           latitude: selectedWo.building.location.coords[0],
@@ -278,24 +297,29 @@ function WOScreen(props) {
                         }}
                       >
                         <Marker
-                          coordinate={{latitude: selectedWo.building.location.coords[0],
-                                      longitude: selectedWo.building.location.coords[1]}}
+                          coordinate={{
+                            latitude: selectedWo.building.location.coords[0],
+                            longitude: selectedWo.building.location.coords[1],
+                          }}
                           title={selectedWo.building.name}
                           description={selectedWo.building.location.address}
                         />
                       </MapView>
                     </Box>
-
                   </ScrollView>
                   <Box
                     alignItems={"center"}
                     borderTopColor={"#e5e5e5"}
                     borderTopWidth={"1"}
-                    padding={3}
+                    paddingTop={3}
                   >
-                     <FAB title="Continue" color="#377DFF"  onPress={() => {
+                    <FAB
+                      title="Continue"
+                      color="#377DFF"
+                      onPress={() => {
                         setselectedWo(0);
-                      }} />
+                      }}
+                    />
                   </Box>
                 </>
               )}

@@ -207,7 +207,7 @@ function AssetTaggingScreen(props) {
               <Text style={styles.subtext}>Type: Asset Tagging</Text>
               <Text style={styles.subtext}>Property: Building XYZ</Text>
             </VStack>
-            <FAB title="Continue" color="#377DFF"/>
+            <FAB title="Continue" color="#377DFF" />
           </HStack>
         </Box>
         <Box flex={3}>
@@ -246,7 +246,7 @@ function AssetTaggingScreen(props) {
         <FAB
           placement="right"
           visible={visible}
-          icon={{ name: "add", color:"#377DFF" }}
+          icon={{ name: "add", color: "#377DFF" }}
           color="white"
         />
       </VStack>
