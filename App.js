@@ -27,6 +27,7 @@ import { Avatar } from "@rneui/themed";
 import AssetTaggingScreen from "./app/Screens/AssetTaggingScreen";
 import AssetTaggingPhotoScreen from "./app/Screens/AssetTaggingPhotoScreen";
 import AssetTaggingDetailsScreen from "./app/Screens/AssetTaggingDetailsScreen";
+import AssetTaggingNav from "./app/Screens/AssetTaggingNav";
 
 AppRegistry.registerComponent("ignisapp", () => App);
 const Drawer = createDrawerNavigator();
@@ -163,7 +164,7 @@ function MyDrawer() {
         />
         <Drawer.Screen name="Work Orders" component={WOScreen} />
         <Drawer.Screen name="Schedule" component={ScheduleScreen} />
-        <Drawer.Screen name="Requests" component={AssetTaggingScreen} />
+        <Drawer.Screen name="Requests" component={AssetTaggingNav} />
       </Drawer.Navigator>
     </Box>
   );

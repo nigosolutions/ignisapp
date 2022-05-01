@@ -3,202 +3,399 @@ import { Box, HStack, ScrollView, Text, VStack, Button, Modal, Popover} from "na
 import React from "react";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import AssetTaggingDetailsScreen from "./AssetTaggingDetailsScreen";
+
+
+
 
 function AssetTaggingScreen(props) {
   const [visible, setVisible] = React.useState(true);
-  const [dev, setDev] = React.useState([]);
+  const [dev, setDev] = React.useState([
+    {
+      name: "Device ",
+      id: "AT3223",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+    {
+      name: "Device ",
+      id: "AT3224",
+      details: "Details of Asset tagging",
+      date: "10 Jan",
+      building: {
+        name: "Building 1",
+        location: { address: "XYZ street", coords: [25.2854, 51.531] },
+      },
+      status: "pending",
+    },
+  ]);
   const [showModal, setShowModal] = React.useState(false);
-  React.useEffect(() => {
-    setDev([
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-      {
-        name: "Device ",
-        id: "AT3224",
-        details: "Details of Asset tagging",
-        date: "10 Jan",
-        building: {
-          name: "Building 1",
-          location: { address: "XYZ street", coords: [25.2854, 51.531] },
-        },
-        status: "pending",
-      },
-    ]);
-  }, []);
+  // React.useEffect(() => {
+  //   setDev([
+  //     {
+  //       name: "Device ",
+  //       id: "AT3223",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //     {
+  //       name: "Device ",
+  //       id: "AT3224",
+  //       details: "Details of Asset tagging",
+  //       date: "10 Jan",
+  //       building: {
+  //         name: "Building 1",
+  //         location: { address: "XYZ street", coords: [25.2854, 51.531] },
+  //       },
+  //       status: "pending",
+  //     },
+  //   ]);
+  // }, []);
+
+  const onDelete = (id)=>{
+    setDev(dev.filter(item.id !== id));
+  };
 
   return (
     <Box flex={1} padding={5}>
@@ -246,7 +443,7 @@ function AssetTaggingScreen(props) {
                                     Edit/Delete
                                   </Button>;
                         }}>
-                            <Popover.Content accessibilityLabel="Delete Customerd" w="56">
+                            <Popover.Content accessibilityLabel="Delete Customer" w="56">
                             <Popover.Arrow />
                             <Popover.CloseButton />
                             <Popover.Header>Edit/Delete</Popover.Header>
@@ -300,6 +497,7 @@ function AssetTaggingScreen(props) {
           visible={visible}
           icon={{ name: "add", color: "#377DFF" }}
           color="white"
+          onPress={()=>props.navigation.navigate('Photo')}
         />
       </VStack>
     </Box>
