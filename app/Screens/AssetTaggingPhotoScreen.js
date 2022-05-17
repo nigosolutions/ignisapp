@@ -21,7 +21,7 @@ function AssetTaggingPhotoScreen(props) {
                             </TouchableOpacity>
                         </Box>
                         <Box style={styles.card} padding={10} margin={10}>
-                            <TouchableOpacity onPress={()=>{console.log('Upload Image')}}>
+                            <TouchableOpacity onPress={()=>props.navigation.navigate('Details')}>
                                 <VStack space={10} alignItems={'center'}>
                                     <Text style={styles.title}>Upload Image</Text>
                                     <Icon size={200} name="upload" type="material-community" color="grey" />

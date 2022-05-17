@@ -14,7 +14,7 @@ function AssetTaggingNav(props) {
         <ATNav.Screen
           name="Home"
           component={AssetTaggingScreen}
-          options={{ title: 'Asset Tagging' }}
+          options={{ title: 'Asset Tagging', headerShown: false}}
         />
         <ATNav.Screen
           name="Photo"

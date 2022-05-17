@@ -394,7 +394,7 @@ function AssetTaggingScreen(props) {
   // }, []);
 
   const onDelete = (id)=>{
-    setDev(dev.filter(item.id !== id));
+    setDev(dev.filter(dev.id !== id));
   };
 
   return (
@@ -407,7 +407,7 @@ function AssetTaggingScreen(props) {
               <Text style={styles.subtext}>Type: Asset Tagging</Text>
               <Text style={styles.subtext}>Property: Building XYZ</Text>
             </VStack>
-            <FAB title="Continue" color="#377DFF" />
+            <FAB title="Submit" color="#377DFF" />
           </HStack>
         </Box>
         <Box flex={3}>
@@ -458,7 +458,7 @@ function AssetTaggingScreen(props) {
                                   Cancel
                                 </Button>
                                 <Button colorScheme="info">Edit</Button>
-                                <Button colorScheme="danger">Delete</Button>
+                                <Button colorScheme="danger" onPress={()=>{onDelete('AT3224')}}>Delete</Button>
                               </Button.Group>
                             </Popover.Footer>
                           </Popover.Content>
