@@ -28,6 +28,7 @@ import AssetTaggingScreen from "./app/Screens/AssetTaggingScreen";
 import AssetTaggingPhotoScreen from "./app/Screens/AssetTaggingPhotoScreen";
 import AssetTaggingDetailsScreen from "./app/Screens/AssetTaggingDetailsScreen";
 import AssetTaggingNav from "./app/Screens/AssetTaggingNav";
+import ITMScreen from "./app/Screens/ITMScreen"
 
 AppRegistry.registerComponent("ignisapp", () => App);
 const Drawer = createDrawerNavigator();
