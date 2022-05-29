@@ -74,7 +74,7 @@ function DashboardScreen(props) {
               </VStack>
             </ListItem>
 
-            <FAB size="small" title="Work Orders" color="#377DFF" />
+            <FAB size="small" title="Work Orders" color="#377DFF" onPress={()=>props.navigation.navigate('Work Orders')}/>
           </HStack>
         </VStack>
         <Box padding={3} rounded={10} bgColor={"white"} flex={1}>

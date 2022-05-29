@@ -111,7 +111,7 @@ function ITMScreen(props) {
                                 <ListItem
                                 // backgroundColor={"#e5e5e5"}
                                 margin={5}
-                                width={150}
+                                // width={150}
                                 containerStyle={styles.listContainer}
                                 >
                                 <VStack space={1} flex={1} alignItems='center'>
@@ -155,6 +155,7 @@ var styles = StyleSheet.create({
       listContainer: {
         backgroundColor: "#fafbfc",
         borderRadius: 10,
+        width: 150
       },
 }
 )
