@@ -16,6 +16,7 @@ import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 // import { Marker } from "react-native-svg";
+import AssetTaggingScreen from "./AssetTaggingScreen";
 
 var styles = StyleSheet.create({
   title: {
@@ -314,10 +315,11 @@ function WOScreen(props) {
                     paddingTop={3}
                   >
                     <FAB
-                      title="Continue"
+                      title={selectedWo.status === 'pending' ? "Continue" : "View"}
                       color="#377DFF"
                       onPress={() => {
-                        setselectedWo(0);
+                        // setselectedWo(0);
+                        props.navigation.navigate('ATHome')
                       }}
                     />
                   </Box>

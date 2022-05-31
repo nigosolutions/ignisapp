@@ -163,9 +163,9 @@ function MyDrawer() {
             ),
           }}
         />
-        <Drawer.Screen name="Work Orders" component={WOScreen} />
-        <Drawer.Screen name="Schedule" component={ITMScreen} />
-        <Drawer.Screen name="Requests" component={AssetTaggingNav} />
+        <Drawer.Screen name="Work Orders" component={AssetTaggingNav} />
+        <Drawer.Screen name="Schedule" component={ScheduleScreen} />
+        <Drawer.Screen name="Requests" component={ITMScreen} />
       </Drawer.Navigator>
     </Box>
   );

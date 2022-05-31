@@ -1,4 +1,4 @@
-import { Box, Button, HStack, VStack, Text, ScrollView } from 'native-base';
+import { Box, Button, HStack, VStack, Text, ScrollView, Select, CheckIcon } from 'native-base';
 import { FAB, ListItem, SearchBar } from "@rneui/themed";
 import React from 'react';
 import { StyleSheet } from 'react-native';
@@ -66,6 +66,7 @@ function ITMScreen(props) {
             status: "pending",
           },
       ]);
+    const [service, setService] = React.useState("");
     return (
         <Box flex={1}>
             <VStack flex={1} mx={5} my={5} space={5}>
@@ -86,11 +87,22 @@ function ITMScreen(props) {
                 </HStack>
                 <VStack rounded={20} padding={3} bgColor={"white"} space={5}>
                     <HStack borderBottomWidth={1} borderColor={"#e5e5e5"} padding={0} space={10}>
-                        <Box justifyContent={'center'}>
+                        {/* <Box justifyContent={'center'}>
                         <Text style={styles.subtext}>Pending</Text>
+                        </Box> */}
+                        <Box w="3/4" maxW="200">
+                          <Select selectedValue={service} minWidth="200" accessibilityLabel="Status" placeholder="Status" _selectedItem={{
+                          bg: "teal.600",
+                          endIcon: <CheckIcon size="5" />
+                        }} mt={1} onValueChange={itemValue => setService(itemValue)}>
+                            <Select.Item label="Pending" value="pending" />
+                            <Select.Item label="Completed" value="completed" />
+                            <Select.Item label="Waiting" value="waiting" />
+                            <Select.Item label="In Progress" value="progress" />
+                          </Select>
                         </Box>
                         <Box>
-                        <SearchBar 
+                        <SearchBar flex={1}
                             placeholder="                        "
                             round
                             containerStyle={{ backgroundColor: "white" , border: 0}}

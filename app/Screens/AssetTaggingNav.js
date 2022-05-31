@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AssetTaggingDetailsScreen from "./AssetTaggingDetailsScreen";
 import AssetTaggingScreen from './AssetTaggingScreen';
 import AssetTaggingPhotoScreen from './AssetTaggingPhotoScreen';
+import WOScreen from './WOScreen';
 
 const ATNav = createNativeStackNavigator();
 
@@ -13,8 +14,13 @@ function AssetTaggingNav(props) {
       <ATNav.Navigator>
         <ATNav.Screen
           name="Home"
+          component={WOScreen}
+          options={{ title: 'Work Orders' , headerShown: false}}
+        />
+        <ATNav.Screen
+          name="ATHome"
           component={AssetTaggingScreen}
-          options={{ title: 'Asset Tagging', headerShown: false}}
+          options={{ title: 'Asset Tagging'}}
         />
         <ATNav.Screen
           name="Photo"
@@ -26,6 +32,7 @@ function AssetTaggingNav(props) {
           component={AssetTaggingDetailsScreen}
           options={{ title: 'Device Details' }}
         />
+        
       </ATNav.Navigator>
     </NavigationContainer>
     );
