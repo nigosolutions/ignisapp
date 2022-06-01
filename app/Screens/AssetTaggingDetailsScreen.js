@@ -1,7 +1,9 @@
 import React from 'react';
 import {Box, HStack, VStack, Text, ScrollView, Input, Button} from 'native-base'
-import { StyleSheet } from "react-native";
-import { ListItem } from "@rneui/themed";
+import { StyleSheet, Image } from "react-native";
+import { ListItem, Icon} from "@rneui/themed";
+import * as ImagePicker from 'expo-image-picker';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 function AssetTaggingDetailsScreen(props) {
     const [devDet, setDevDet] = React.useState([]);
@@ -18,6 +20,52 @@ function AssetTaggingDetailsScreen(props) {
         //   }
         ]);
       }, []);
+
+      // The path of the picked image
+    const [pickedImagePath, setPickedImagePath] = React.useState('');
+
+    //Upload image
+    const showImagePicker = async () => {
+        // Ask the user for the permission to access the media library 
+        const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    
+        if (permissionResult.granted === false) {
+          alert("You've refused to allow this appp to access your photos!");
+          return;
+        }
+    
+        const result = await ImagePicker.launchImageLibraryAsync();
+    
+        // Explore the result
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setPickedImagePath(result.uri);
+          console.log(result.uri);
+        }
+      }
+
+      //Open Camera
+      const openCamera = async () => {
+        // Ask the user for the permission to access the camera
+        const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+    
+        if (permissionResult.granted === false) {
+          alert("You've refused to allow this appp to access your camera!");
+          return;
+        }
+    
+        const result = await ImagePicker.launchCameraAsync();
+    
+        // Explore the result
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setPickedImagePath(result.uri);
+          console.log(result.uri);
+        }
+      }
+
     return (
         <Box flex={1} padding={10}>
             <VStack space={10} flex={1}>
@@ -33,15 +81,32 @@ function AssetTaggingDetailsScreen(props) {
                         </ScrollView>
                     </Box>
                     <Box padding={10} flex={1} justifyContent={'center'} alignItems={'center'}>
-                        <Box style={styles.card} justifyContent={'center'} w="100%">
+                        {/* <Box style={styles.card} justifyContent={'center'} w="100%">
                             <Text>Image</Text>
+                        </Box> */}
+                        {pickedImagePath == '' ? (
+                        <Box style={styles.card} padding={10} margin={10} w='100%' h='100%'>
+                            <TouchableOpacity onPress={showImagePicker}>
+                                <VStack space={10} alignItems={'center'}>
+                                    <Text style={styles.title}>Upload Image</Text>
+                                    <Icon size={100} name="upload" type="material-community" color="grey" />
+                                </VStack>
+                            </TouchableOpacity>
                         </Box>
+                        ):(
+                        <Box style={styles.card} justifyContent={'center'} w="100%">
+                            <Image
+                            source={{ uri: pickedImagePath }}
+                            // style={styles.image}
+                              />
+                        </Box>
+                        )}
                     </Box>
                 </HStack>
                 <Box alignItems={'center'}>
                     <Button.Group space={2}>
                       <Button colorScheme="info">Save</Button>
-                      <Button colorScheme="danger">Cancel</Button>
+                      <Button colorScheme="danger" onPress={()=>props.navigation.navigate('ATHome')}>Cancel</Button>
                     </Button.Group>               
                 </Box>
             </VStack>
@@ -76,7 +141,7 @@ var styles = StyleSheet.create({
       borderRadius: 10,
       flex: 1,
       alignItems:'center',
-      height: 350,
+      // height: 350,
     }
   });
 
