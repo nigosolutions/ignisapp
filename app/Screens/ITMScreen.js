@@ -2,6 +2,7 @@ import { Box, Button, HStack, VStack, Text, ScrollView, Select, CheckIcon } from
 import { FAB, ListItem, SearchBar } from "@rneui/themed";
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { SearchBarIOS } from '@rneui/base/dist/SearchBar/SearchBar-ios';
 
 function ITMScreen(props) {
     const [dev, setDev] = React.useState([
@@ -67,6 +68,20 @@ function ITMScreen(props) {
           },
       ]);
     const [service, setService] = React.useState("");
+    const [loc, setLoc] = React.useState([
+      {
+        Floor:1,
+        Rooms:[1,2,3,4,5]
+      },
+      {
+        Floor:2,
+        Rooms:[1,2,3,4]
+      },
+      {
+        Floor:3,
+        Rooms:[1,2,3,4,5,6]
+      },
+    ]);
     return (
         <Box flex={1}>
             <VStack flex={1} mx={5} my={5} space={5}>
@@ -81,12 +96,13 @@ function ITMScreen(props) {
                         <FAB color='#4e5d78' bgColor='#4e5d78' title='Make a Request'/>
                     </VStack>
                     <VStack flex={1} space={3} justifyContent='center' alignItems='center'>
-                        <Button>Start</Button>
-                        <Button>Submit</Button>
+                        <FAB color="#377DFF" title='Start'/>
+                        <FAB color="#377DFF" title='Submit'/>
                     </VStack>
                 </HStack>
                 <VStack rounded={20} padding={3} bgColor={"white"} space={5}>
-                    <HStack borderBottomWidth={1} borderColor={"#e5e5e5"} padding={0} space={10}>
+                  <HStack>
+                    <HStack borderBottomWidth={1} borderColor={"#e5e5e5"} padding={0} space={10} flex={1}>
                         {/* <Box justifyContent={'center'}>
                         <Text style={styles.subtext}>Pending</Text>
                         </Box> */}
@@ -102,15 +118,33 @@ function ITMScreen(props) {
                           </Select>
                         </Box>
                         <Box>
-                        <SearchBar flex={1}
-                            placeholder="                        "
-                            round
-                            containerStyle={{ backgroundColor: "white" , border: 0}}
-                            inputContainerStyle={{ backgroundColor: "#e5e5e5"}}
-                            lightTheme
-                        />
+                        <SearchBarIOS />
                         </Box>
                     </HStack>
+                    <HStack borderBottomWidth={1} borderColor={"#e5e5e5"} padding={0} space={10} flex={1} justifyContent='flex-end'>
+                        {/* <Box justifyContent={'center'}>
+                        <Text style={styles.subtext}>Pending</Text>
+                        </Box> */}
+                        <Box w="3/4" maxW="200">
+                          <Select selectedValue={service} minWidth="200" accessibilityLabel="Floor" placeholder="Status" _selectedItem={{
+                          bg: "teal.600",
+                          endIcon: <CheckIcon size="5" />
+                        }} mt={1} onValueChange={itemValue => setService(itemValue)}>
+                            <Select.Item label="Floor 1" value="pending" />
+                            <Select.Item label="Floor 2" value="completed" />
+                          </Select>
+                        </Box>
+                        <Box w="3/4" maxW="200">
+                          <Select selectedValue={service} minWidth="200" accessibilityLabel="Room" placeholder="Status" _selectedItem={{
+                          bg: "teal.600",
+                          endIcon: <CheckIcon size="5" />
+                        }} mt={1} onValueChange={itemValue => setService(itemValue)}>
+                            <Select.Item label="Room 1" value="pending" />
+                            <Select.Item label="Room 2" value="completed" />
+                          </Select>
+                        </Box>
+                    </HStack>
+                  </HStack>
                     <Box>
                         <ScrollView>
                         <Box

@@ -29,6 +29,7 @@ import AssetTaggingPhotoScreen from "./app/Screens/AssetTaggingPhotoScreen";
 import AssetTaggingDetailsScreen from "./app/Screens/AssetTaggingDetailsScreen";
 import AssetTaggingNav from "./app/Screens/AssetTaggingNav";
 import ITMScreen from "./app/Screens/ITMScreen"
+import ITMExecutionScreen from "./app/Screens/ITMExecutionScreen";
 
 AppRegistry.registerComponent("ignisapp", () => App);
 const Drawer = createDrawerNavigator();
@@ -164,8 +165,8 @@ function MyDrawer() {
           }}
         />
         <Drawer.Screen name="Work Orders" component={AssetTaggingNav} />
-        <Drawer.Screen name="Schedule" component={ScheduleScreen} />
-        <Drawer.Screen name="Requests" component={ITMScreen} />
+        <Drawer.Screen name="Schedule" component={ITMScreen} />
+        <Drawer.Screen name="Requests" component={ITMExecutionScreen} />
       </Drawer.Navigator>
     </Box>
   );
