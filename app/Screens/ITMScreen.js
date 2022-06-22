@@ -117,8 +117,14 @@ function ITMScreen(props) {
                             <Select.Item label="In Progress" value="progress" />
                           </Select>
                         </Box>
-                        <Box>
-                        <SearchBarIOS />
+                        <Box flex={1}>
+                          <SearchBar
+                            placeholder="Enter Search Text"
+                            round
+                            containerStyle={{ backgroundColor: "white" }}
+                            inputContainerStyle={{ backgroundColor: "#e5e5e5" }}
+                            lightTheme
+                          />
                         </Box>
                     </HStack>
                     <HStack borderBottomWidth={1} borderColor={"#e5e5e5"} padding={0} space={10} flex={1} justifyContent='flex-end'>
