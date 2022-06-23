@@ -71,7 +71,7 @@ function AssetTaggingDetailsScreen(props) {
             <VStack space={10} flex={1}>
                 <Text style={styles.desc_title}>Work Order #3224</Text>
                 <Text style={styles.desc_title}>Asset Details</Text>
-                <HStack>
+             <HStack>
                     <Box flex={1} >
                         <ScrollView contentContainerStyle={{alignItems:'center'}}>
                             {devDet.map((item) => (
@@ -85,7 +85,7 @@ function AssetTaggingDetailsScreen(props) {
                             <Text>Image</Text>
                         </Box> */}
                         {pickedImagePath == '' ? (
-                        <Box style={styles.card} padding={10} margin={10} w='100%' h='100%'>
+                        <Box style={styles.card} padding={10} margin={10} w='100%' >
                             <TouchableOpacity onPress={showImagePicker}>
                                 <VStack space={10} alignItems={'center'}>
                                     <Text style={styles.title}>Upload Image</Text>
@@ -95,9 +95,9 @@ function AssetTaggingDetailsScreen(props) {
                         </Box>
                         ):(
                         <Box style={styles.card} justifyContent={'center'} w="100%">
-                            <Image
+                            <Image flex={1}
                             source={{ uri: pickedImagePath }}
-                            // style={styles.image}
+                            style={{width:'100%'}}
                               />
                         </Box>
                         )}
