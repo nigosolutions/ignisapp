@@ -161,7 +161,33 @@ export default function ITMExeSubScreen() {
   );
 
   return (
-      <VStack space={5} padding={10} flex={1}>
+      <VStack space={5} padding={5} flex={1}>
+        <HStack alignItems={'center'} padding={5} rounded={10} flex={1/6} bgColor={'lightgrey'}>
+        <HStack space={2} flex={1}>
+        <FAB
+        color='grey'
+        title="Previous"
+        icon={{ name: 'chevron-left', color: 'white' }}
+      />
+         <FAB
+        color='grey'
+        title="Next"
+        iconPosition='right'
+        icon={{ name: 'chevron-right', color: 'white' }}
+      />
+      </HStack>
+      <Box justifyContent={'center'} fllex={1}>
+      <Text>Device 1/30</Text>
+      </Box>
+      <Box alignItems={'flex-end'} flex={1} >
+      <FAB
+        color='grey'
+        title="Cancel"
+        icon={{ name: 'cancel', color: 'white' }}
+      />
+      </Box>
+
+        </HStack>
           <HStack space={5}>
           <Box padding={5} rounded={10} bgColor={'white'} flex={3}>
               <HStack>
