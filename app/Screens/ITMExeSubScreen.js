@@ -6,6 +6,7 @@ import { TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as ImagePicker from 'expo-image-picker';
 import { ButtonGroup, Icon} from "@rneui/themed";
+import { Audio } from 'expo-av';
 
 
 
@@ -23,6 +24,7 @@ export default function ITMExeSubScreen() {
 
   ]);
 
+  // Uploading image
   // The path of the picked image
   const [pickedImagePath, setPickedImagePath] = React.useState('');
 
@@ -67,6 +69,71 @@ export default function ITMExeSubScreen() {
       console.log(result.uri);
     }
   }
+  //Uploading image -end
+
+  //Voice Message
+  //Audio recorder
+  const [recording, setRecording] = React.useState();
+  const [audioPath, setAudioPath] = React.useState();
+
+  async function startRecording() {
+    try {
+      console.log('Requesting permissions..');
+      await Audio.requestPermissionsAsync();
+      await Audio.setAudioModeAsync({
+        allowsRecordingIOS: true,
+        playsInSilentModeIOS: true,
+      }); 
+      console.log('Starting recording..');
+      const { recording } = await Audio.Recording.createAsync(
+          Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+      );
+      setRecording(recording);
+      console.log('Recording started');
+    } catch (err) {
+      console.error('Failed to start recording', err);
+    }
+  };
+
+  async function stopRecording() {
+    console.log('Stopping recording..');
+    setRecording(undefined);
+    await recording.stopAndUnloadAsync();
+    const uri = recording.getURI(); 
+    setAudioPath(uri);
+    console.log('Recording stopped and stored at', uri);
+  };
+
+  //Playing audio
+  const [sound, setSound] = React.useState();
+
+  async function playSound() {
+
+    try{
+      console.log('Loading Sound');
+      const { sound } = await Audio.Sound.createAsync(
+        // require('./assets/Hello.mp3')
+        {uri:audioPath}
+      );
+      setSound(sound);
+  
+      console.log('Playing Sound');
+      await sound.playAsync(); 
+      // await sound.unloadAsync();
+    } catch (error) {
+      // An error occurred!
+      console.error('Failed to start playing', err);
+    }
+    };
+    
+  React.useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync(); }
+      : undefined;
+  }, [sound]);
+  // Voice message -end
 
   const FirstRoute = () => (
   <Box flex={1} style={{backgroundColor:'white'}}>
@@ -100,7 +167,26 @@ export default function ITMExeSubScreen() {
             <Box style={{height: 100, backgroundColor: "#e5e5e5", borderRadius:5}}>
               <HStack justifyContent={'center'} alignItems={'center'}>
                 <TextArea h={100} placeholder="Remarks" w="90%"/>
-                <Icon size={40} name="microphone" type="material-community" color="grey" />
+                {/* <Icon size={40} name="microphone" type="material-community" color="grey" /> */}
+                <VStack>
+                  <TouchableOpacity onPress={recording ? stopRecording : startRecording}>
+                    {recording ? (
+                      <Icon size={40} name="stop" type="material-community" color="grey" />
+                    ):(
+                      <Icon size={40} name="microphone" type="material-community" color="grey" />
+                    )}
+                  </TouchableOpacity>
+                  { audioPath ?  (
+                  <HStack justifyContent={'center'}>
+                    <TouchableOpacity onPress={playSound}>
+                      <Icon size={40} name="play" type="material-community" color="grey" />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>setAudioPath(undefined)}>
+                      <Icon size={40} name="close" type="material-community" color="grey" />
+                    </TouchableOpacity>
+                  </HStack>
+                  ):(undefined)}
+                </VStack>
               </HStack>
             </Box>
           </VStack>

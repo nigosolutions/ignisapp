@@ -1,8 +1,17 @@
 import { Box, Button, HStack, VStack, Text, ScrollView, Select, CheckIcon } from 'native-base';
-import { FAB, ListItem, SearchBar } from "@rneui/themed";
+import { FAB, ListItem, SearchBar, Icon } from "@rneui/themed";
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { SearchBarIOS } from '@rneui/base/dist/SearchBar/SearchBar-ios';
+// import AudioRecorderPlayer, { 
+//   AVEncoderAudioQualityIOSType,
+//   AVEncodingOption, 
+//   AudioEncoderAndroidType,
+//   AudioSet,
+//   AudioSourceAndroidType, 
+//  } from 'react-native-audio-recorder-player';
+import { Audio } from 'expo-av';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 function ITMScreen(props) {
     const [dev, setDev] = React.useState([
@@ -82,6 +91,111 @@ function ITMScreen(props) {
         Rooms:[1,2,3,4,5,6]
       },
     ]);
+
+
+    // //Audio Recorder
+    // const [isLoggingIn,setIsLoggingIn] = React.useState(false);
+    // const [recordSecs,setRecordSecs] = React.useState(0);
+    // const [recordTime,setRecordTime] = React.useState('00:00:00');
+    // const [currentPositionSec,setCurrentPositionSec] = React.useState(0);
+    // const [currentDurationSec,setCurrentDurationSec] = React.useState(0);
+    // const [playTime,setPlayTime] = React.useState('00:00:00');
+    // const [duration,setDuration] = React.useState('00:00:00');
+
+    // const audioRecorderPlayer = new AudioRecorderPlayer();
+
+    // const onStartRecord = async () => {
+    
+    //   const path = 'hello.m4a';
+    //   const audioSet = {
+    //     AudioEncoderAndroid: AudioEncoderAndroidType.AAC,
+    //     AudioSourceAndroid: AudioSourceAndroidType.MIC,
+    //     AVEncoderAudioQualityKeyIOS: AVEncoderAudioQualityIOSType.high,
+    //     AVNumberOfChannelsKeyIOS: 2,
+    //     AVFormatIDKeyIOS: AVEncodingOption.aac,
+    //   };
+    //   console.log('audioSet', audioSet);
+    //   const uri = await audioRecorderPlayer.startRecorder(path, audioSet);
+    //   audioRecorderPlayer.addRecordBackListener((e) => {
+    //     setRecordSecs(e.current_position),
+    //     setRecordTime(audioRecorderPlayer.mmssss(
+    //           Math.floor(e.current_position),
+    //         ),)
+    //     // this.setState({
+    //     //   recordSecs: e.current_position,
+    //     //   recordTime: this.audioRecorderPlayer.mmssss(
+    //     //     Math.floor(e.current_position),
+    //     //   ),
+    //     // });
+    //   });
+    //   console.log(`uri: ${uri}`);
+    // };
+
+    //Audio recorder 2
+    const [recording, setRecording] = React.useState();
+    const [audioPath, setAudioPath] = React.useState();
+
+    async function startRecording() {
+      try {
+        console.log('Requesting permissions..');
+        await Audio.requestPermissionsAsync();
+        await Audio.setAudioModeAsync({
+          allowsRecordingIOS: true,
+          playsInSilentModeIOS: true,
+        }); 
+        console.log('Starting recording..');
+        const { recording } = await Audio.Recording.createAsync(
+           Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+        );
+        setRecording(recording);
+        console.log('Recording started');
+      } catch (err) {
+        console.error('Failed to start recording', err);
+      }
+    };
+  
+    async function stopRecording() {
+      console.log('Stopping recording..');
+      setRecording(undefined);
+      await recording.stopAndUnloadAsync();
+      const uri = recording.getURI(); 
+      setAudioPath(uri);
+      console.log('Recording stopped and stored at', uri);
+    };
+
+    //Playing audio
+    const [sound, setSound] = React.useState();
+
+    async function playSound() {
+
+      try{
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync(
+          // require('./assets/Hello.mp3')
+          {uri:audioPath}
+        );
+        setSound(sound);
+    
+        console.log('Playing Sound');
+        await sound.playAsync(); 
+        // await sound.unloadAsync();
+      } catch (error) {
+        // An error occurred!
+        console.error('Failed to start playing', err);
+      }
+      };
+      
+      
+  
+    React.useEffect(() => {
+      return sound
+        ? () => {
+            console.log('Unloading Sound');
+            sound.unloadAsync(); }
+        : undefined;
+    }, [sound]);
+  
+
     return (
         <Box flex={1}>
             <VStack flex={1} mx={5} my={5} space={5}>
@@ -182,6 +296,40 @@ function ITMScreen(props) {
                         </Box>
                         </ScrollView>
                     </Box>
+                    <HStack space={5}>
+                      <Button onPress={recording ? stopRecording : startRecording}>
+                        {recording ? 'Stop Recording' : 'Start Recording'}
+                      </Button>
+                      { audioPath ?  (
+                        <HStack space={3}>
+                          <Button onPress={playSound}>Play</Button>
+                          <Button onPress={()=>setAudioPath(undefined)}>Clear</Button>
+                        </HStack>
+                        ):(undefined)}
+                      {/* <Button onPress={() => onStartRecord()}>Record</Button> */}
+                      {/* <Button>Stop</Button> */}
+                      {/* <Text>{recordTime}</Text> */}
+                    </HStack>
+                    <VStack>
+                      <TouchableOpacity onPress={recording ? stopRecording : startRecording}>
+                        {recording ? (
+                          <Icon size={40} name="stop" type="material-community" color="grey" />
+                        ):(
+                          <Icon size={40} name="microphone" type="material-community" color="grey" />
+                        )}
+                      </TouchableOpacity>
+                      { audioPath ?  (
+                      <HStack justifyContent={'center'}>
+                        <TouchableOpacity onPress={playSound}>
+                          <Icon size={40} name="play" type="material-community" color="grey" />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>setAudioPath(undefined)}>
+                          <Icon size={40} name="close" type="material-community" color="grey" />
+                        </TouchableOpacity>
+                      </HStack>
+                      ):(undefined)}
+                    </VStack>
+                    
                 </VStack>
             </VStack>
         </Box>
